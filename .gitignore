@@ -51,3 +51,5 @@ _deps
 external/devilsdk
 external/granny2
 external/fbxsdk
+/.vs
+/build
