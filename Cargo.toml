@@ -1,0 +1,14 @@
+[package]
+name = "GrannyConverterLibrary"
+version = "0.1.0"
+edition = "2021"
+crate-type = ["lib"]
+
+[dependencies]
+libc = "0.2.150"
+sqlite = "0.31.1"
+zip = "0.6.6"
+
+[build-dependencies]
+cc = "1.0.83"
+cmake = "0.1.50"

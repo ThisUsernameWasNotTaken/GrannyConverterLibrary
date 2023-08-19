@@ -4,10 +4,6 @@ project(GrannyConverterLibrary LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -27,6 +23,3 @@ target_compile_definitions(GrannyConverterLibrary PRIVATE GRANNYCONVERTERLIBRARY
 # DevIL SDK and FBX SDK
 include("${PROJECT_SOURCE_DIR}/cmake/devilsdk.cmake")
 include("${PROJECT_SOURCE_DIR}/cmake/fbxsdk.cmake")
-
-# Add examples.
-add_subdirectory(examples/converter)

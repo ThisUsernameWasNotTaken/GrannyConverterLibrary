@@ -48,6 +48,20 @@ _deps
 *.app
 
 # Project specific
-external/devilsdk
-external/granny2
-external/fbxsdk
+/external
+/.vs
+/build
+/build_
+/out/build/x86-Debug
+/examples/converter/ALL_BUILD.vcxproj
+/examples/converter/ALL_BUILD.vcxproj.filters
+/examples/converter/ConverterExample.sln
+/examples/converter/ConverterExample.vcxproj
+/examples/converter/ConverterExample.vcxproj.filters
+
+
+# Added by cargo
+
+/target
+/*.lock
+/out
