@@ -6,15 +6,38 @@
 #include "gcl/utilities/logging.h"
 
 #include <stdio.h>  /* defines FILENAME_MAX */
+#include <string>
+#include <iostream>
+#include <filesystem>
 #include <direct.h>
+#include "main.h"
 #define GetCurrentDir _getcwd
+
+bool has_suffix(const std::string& str, const std::string& suffix)
+{
+	bool x = str.size() >= suffix.size() && str.compare(str.size() - suffix.size(), suffix.size(), suffix) == 0;
+	return x;
+}
 
 int main()
 {
 	char cCurrentPath[FILENAME_MAX];
 
-	auto x = GetCurrentDir(cCurrentPath, sizeof(cCurrentPath));
-	GCL::Utilities::Logging::info("%s", x);
+	auto folderPath = GetCurrentDir(cCurrentPath, sizeof(cCurrentPath));
+	GCL::Utilities::Logging::info("%s", folderPath);
+
+	for (const auto& entry : filesystem::directory_iterator(folderPath))
+	{
+		auto filePath = entry.path().string();
+		if (has_suffix(filePath, ".gr2") || has_suffix(filePath, ".GR2"))
+			extractFBX(filePath);
+	}
+	return 0;
+}
+
+
+int extractFBX(std::string& filename)
+{
 	// Initialize library.
 	GCL::GrannyConverterLibrary grannyConverterLibrary;
 
@@ -29,7 +52,7 @@ int main()
 	GCL::Importer::GrannyImporter importer(options);
 
 	// Load a character and a animation.
-	importer.importFromFile("i_kleintempel01-01_col.GR2");
+	importer.importFromFile(filename.c_str());
 	//    importer.importFromFile("character_animation.gr2");
 
 	GCL::Exporter::FbxExportOptions exporterOptions;
@@ -41,13 +64,13 @@ int main()
 	exporterOptions.exportMaterials = false;
 
 	// Export animations.
-	exporterOptions.exportAnimation = false;
+	exporterOptions.exportAnimation = true;
 
 	// Create exporter instance with the scene to be exported.
 	GCL::Exporter::FbxExporter exporter(exporterOptions, importer.getScene());
 
 	// Export the fbx scene to a fbx file.
-	exporter.exportToFile("character_with_animation.fbx");
+	exporter.exportToFile(filename + ".fbx");
 
 	return 0;
 }
