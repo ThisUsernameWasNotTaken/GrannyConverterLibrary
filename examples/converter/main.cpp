@@ -3,42 +3,51 @@
 #include "gcl/grannyconverterlibrary.h"
 #include "gcl/importer/grannyimporter.h"
 #include "gcl/importer/grannyimportoptions.h"
+#include "gcl/utilities/logging.h"
+
+#include <stdio.h>  /* defines FILENAME_MAX */
+#include <direct.h>
+#define GetCurrentDir _getcwd
 
 int main()
 {
-    // Initialize library.
-    GCL::GrannyConverterLibrary grannyConverterLibrary;
+	char cCurrentPath[FILENAME_MAX];
 
-    GCL::Importer::GrannyImportOptions options;
+	auto x = GetCurrentDir(cCurrentPath, sizeof(cCurrentPath));
+	GCL::Utilities::Logging::info("%s", x);
+	// Initialize library.
+	GCL::GrannyConverterLibrary grannyConverterLibrary;
 
-    // Use deboor animation importer.
-    // The importer is able to import animations with bones are being mis-positioned.
-    // However the resulted animation is might be changed in comparison to its original.
-    // options.importAnimationDeboor = true;
+	GCL::Importer::GrannyImportOptions options;
 
-    // Initialize importer.
-    GCL::Importer::GrannyImporter importer(options);
+	// Use deboor animation importer.
+	// The importer is able to import animations with bones are being mis-positioned.
+	// However the resulted animation is might be changed in comparison to its original.
+	// options.importAnimationDeboor = true;
 
-    // Load a character and a animation.
-    importer.importFromFile("character.gr2");
-    importer.importFromFile("character_animation.gr2");
+	// Initialize importer.
+	GCL::Importer::GrannyImporter importer(options);
 
-    GCL::Exporter::FbxExportOptions exporterOptions;
+	// Load a character and a animation.
+	importer.importFromFile("i_kleintempel01-01_col.GR2");
+	//    importer.importFromFile("character_animation.gr2");
 
-    // Export all skeletons.
-    exporterOptions.exportSkeleton = true;
+	GCL::Exporter::FbxExportOptions exporterOptions;
 
-    // Export all materials and textures.
-    exporterOptions.exportMaterials = true;
+	// Export all skeletons.
+	exporterOptions.exportSkeleton = true;
 
-    // Export animations.
-    exporterOptions.exportAnimation = true;
+	// Export all materials and textures.
+	exporterOptions.exportMaterials = false;
 
-    // Create exporter instance with the scene to be exported.
-    GCL::Exporter::FbxExporter exporter(exporterOptions, importer.getScene());
+	// Export animations.
+	exporterOptions.exportAnimation = false;
 
-    // Export the fbx scene to a fbx file.
-    exporter.exportToFile("character_with_animation.fbx");
+	// Create exporter instance with the scene to be exported.
+	GCL::Exporter::FbxExporter exporter(exporterOptions, importer.getScene());
 
-    return 0;
+	// Export the fbx scene to a fbx file.
+	exporter.exportToFile("character_with_animation.fbx");
+
+	return 0;
 }
