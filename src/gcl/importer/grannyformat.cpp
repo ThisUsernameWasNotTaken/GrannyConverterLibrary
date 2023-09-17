@@ -7,6 +7,8 @@ using namespace GCL::Utilities::Logging;
 template <typename T>
 T GetGrannyFunction(HMODULE hModule, const char* lpProcName)
 {
+    // https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-getprocaddress
+    // https://stackoverflow.com/a/573345/7540233
     auto grannyFunction = reinterpret_cast<T>(GetProcAddress(hModule, lpProcName));
     if (!grannyFunction) {
         char errorMessage[255];
