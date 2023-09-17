@@ -53,7 +53,10 @@ int extractFBX(std::string& filename)
 
 	// Load a character and a animation.
 	importer.importFromFile(filename.c_str());
-	//    importer.importFromFile("character_animation.gr2");
+	// todo test if this is indeed what it looks like:
+	//    importer.importFromFile("character_animation.gr2"); 
+	// // if i can import multiple .gr2 file "on top of each other" like layers and then export all into one .fbx then the animations would be solved.
+	// (although i still dont know how converting back to .gr2 will play out...)
 
 	GCL::Exporter::FbxExportOptions exporterOptions;
 
