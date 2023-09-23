@@ -11,6 +11,8 @@
 #include <filesystem>
 #include <direct.h>
 #include "main.h"
+
+#include "GrannyZipExplore.h"
 #define GetCurrentDir _getcwd
 
 bool has_suffix(const std::string& str, const std::string& suffix)

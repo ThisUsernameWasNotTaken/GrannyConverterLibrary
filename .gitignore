@@ -53,3 +53,5 @@ external/granny2
 external/fbxsdk
 /.vs
 /build
+/build_
+/out/build/x86-Debug
