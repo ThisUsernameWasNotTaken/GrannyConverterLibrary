@@ -31,7 +31,3 @@ include("${PROJECT_SOURCE_DIR}/cmake/mycustomadditions.cmake")
 
 # Add examples.
 add_subdirectory(examples/converter)
-
-
-
-include("${PROJECT_SOURCE_DIR}/external/libzip/CMakeLists.txt")

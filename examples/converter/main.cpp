@@ -12,7 +12,6 @@
 #include <direct.h>
 #include "main.h"
 
-#include "GrannyZipExplore.h"
 #define GetCurrentDir _getcwd
 
 bool has_suffix(const std::string& str, const std::string& suffix)
@@ -27,18 +26,31 @@ int main()
 
 	auto folderPath = GetCurrentDir(cCurrentPath, sizeof(cCurrentPath));
 	GCL::Utilities::Logging::info("%s", folderPath);
+	folderPath = "E:\\root\\Dateien\\Sacred\\RustReadZips\\sacred extract test";
 
+	std::string baseFilename = "graphics05.zipa_helve.GR2";
+	std::string baseFilepath;
+	std::vector<std::string> list;
 	for (const auto& entry : filesystem::directory_iterator(folderPath))
 	{
-		auto filePath = entry.path().string();
-		if (has_suffix(filePath, ".gr2") || has_suffix(filePath, ".GR2"))
-			extractFBX(filePath);
+		std::string filePath = entry.path().string();
+		size_t findPos = filePath.find(baseFilename);
+		size_t endPos = filePath.length() - baseFilename.length();
+		if (findPos != std::string::npos && findPos >= endPos)
+			baseFilepath = filePath;
+		else if ((has_suffix(filePath, ".gr2") || has_suffix(filePath, ".GR2")))
+			list.push_back(filePath);
+		else
+			;
 	}
+
+	extractFBX(baseFilepath, list);
+
 	return 0;
 }
 
 
-int extractFBX(std::string& filename)
+int extractFBX(std::string& baseFilepath, std::vector<std::string>& list)
 {
 	// Initialize library.
 	GCL::GrannyConverterLibrary grannyConverterLibrary;
@@ -46,19 +58,24 @@ int extractFBX(std::string& filename)
 	GCL::Importer::GrannyImportOptions options;
 
 	// Use deboor animation importer.
-	// The importer is able to import animations with bones are being mis-positioned.
-	// However the resulted animation is might be changed in comparison to its original.
+	// The importer is able to import animations with bones being mis-positioned.
+	// However the resulting animation might be changed in comparison to its original.
 	// options.importAnimationDeboor = true;
 
 	// Initialize importer.
 	GCL::Importer::GrannyImporter importer(options);
 
 	// Load a character and a animation.
-	importer.importFromFile(filename.c_str());
-	// todo test if this is indeed what it looks like:
-	//    importer.importFromFile("character_animation.gr2"); 
-	// // if i can import multiple .gr2 file "on top of each other" like layers and then export all into one .fbx then the animations would be solved.
-	// (although i still dont know how converting back to .gr2 will play out...)
+	importer.importFromFile(baseFilepath.c_str());
+	for (size_t i = 0; i < list.size(); i++)
+	{
+		// todo test if this is indeed what it looks like:
+		string iFilepath = list.at(i);
+		importer.importFromFile(iFilepath.c_str());
+		// // if i can import multiple .gr2 file "on top of each other" like layers and then export all into one .fbx then the animations would be solved.
+		// // and if this wont work look at this deboor feature above
+		// (although i still dont know how converting back to .gr2 will play out...)
+	}
 
 	GCL::Exporter::FbxExportOptions exporterOptions;
 
@@ -75,7 +92,7 @@ int extractFBX(std::string& filename)
 	GCL::Exporter::FbxExporter exporter(exporterOptions, importer.getScene());
 
 	// Export the fbx scene to a fbx file.
-	exporter.exportToFile(filename + ".fbx");
+	exporter.exportToFile(baseFilepath + ".fbx");
 
 	return 0;
 }
