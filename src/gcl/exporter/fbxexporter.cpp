@@ -73,10 +73,22 @@ namespace GCL::Exporter {
 			m_exporterMaterial->exportMaterials(outputFilepath);
 		}
 
-		auto modelList = m_scene->getModels();
+		vector<GCL::Bindings::Model::SharedPtr> modelListThatHaveNodes;
+		vector<size_t> modelListIndexFoundBone;
+		vector<GCL::Bindings::Model::SharedPtr> modelList = m_scene->getModels();
 		for (size_t i = 0; i < modelList.size(); i++)
 		{
 			auto model = modelList.at(i);
+			auto modelBones = model->getBones();
+			for (size_t ii = 0; ii < modelBones.size(); ii++)
+			{
+				fbxsdk::FbxNode * modelBoneNode = modelBones.at(ii)->getNode();
+				if (modelBoneNode != nullptr)
+				{
+					modelListThatHaveNodes.push_back(model);
+					modelListIndexFoundBone.push_back(ii);
+				}
+			}
 			try
 			{
 				// Export skeleton if enabled.
@@ -84,6 +96,7 @@ namespace GCL::Exporter {
 					auto exist = m_fbxScene->GetRootNode()->FindChild(model->getBones()[0]->getData().Name);
 
 					if (!exist) {
+						////////// HERE WERDEN DIE BONES ZU NODES ZUGEORDNET ///////////
 						m_exporterSkeleton->exportBones(model);
 					}
 					else

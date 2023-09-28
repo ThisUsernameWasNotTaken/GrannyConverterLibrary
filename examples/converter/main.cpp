@@ -26,23 +26,24 @@ int main()
 
 	auto folderPath = GetCurrentDir(cCurrentPath, sizeof(cCurrentPath));
 	GCL::Utilities::Logging::info("%s", folderPath);
-	folderPath = "E:\\root\\Dateien\\Sacred\\RustReadZips\\sacred extract test";
+	folderPath = "E:\\root\\Dateien\\Sacred\\RustReadZips\\sacred extract test\\";
 
-	std::string baseFilename = "graphics05.zipa_helve.GR2";
-	std::string baseFilepath;
+	std::string baseFilename = "E:\\root\\Dateien\\Sacred\\RustReadZips\\sacred extract test\\graphics05.zipa_helve.GR2";
+	std::string baseFilepath = "E:\\root\\Dateien\\Sacred\\RustReadZips\\sacred extract test\\graphics05.zipa_helve.GR2";
 	std::vector<std::string> list;
-	for (const auto& entry : filesystem::directory_iterator(folderPath))
-	{
-		std::string filePath = entry.path().string();
-		size_t findPos = filePath.find(baseFilename);
-		size_t endPos = filePath.length() - baseFilename.length();
-		if (findPos != std::string::npos && findPos >= endPos)
-			baseFilepath = filePath;
-		else if ((has_suffix(filePath, ".gr2") || has_suffix(filePath, ".GR2")))
-			list.push_back(filePath);
-		else
-			;
-	}
+	//for (const auto& entry : filesystem::directory_iterator(folderPath))
+	//{
+	//	std::string filePath = entry.path().string();
+	//	size_t findPos = filePath.find(baseFilename);
+	//	size_t endPos = filePath.length() - baseFilename.length();
+	//	if (findPos != std::string::npos && findPos >= endPos)
+	//		baseFilepath = filePath;
+	//	else if ((has_suffix(filePath, ".gr2") || has_suffix(filePath, ".GR2")))
+	//		list.push_back(filePath);
+	//	else
+	//		;
+	//}
+	list.push_back("E:\\root\\Dateien\\Sacred\\RustReadZips\\sacred extract test\\graphics05.zipa_helve_walk_thr2.GR2");
 
 	extractFBX(baseFilepath, list);
 

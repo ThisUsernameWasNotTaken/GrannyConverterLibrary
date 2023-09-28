@@ -186,7 +186,9 @@ void FbxExporterSkeleton::expandBoneCluster(vector<FbxNode*>& boneClusters, FbxN
 
 void FbxExporterSkeleton::exportRestPose(Model::SharedPtr model)
 {
-    auto rootBone = model->getBones().at(0)->getNode();
+    auto temp = model->getBones();
+    auto temp2 = temp.at(0);
+    auto rootBone = temp2->getNode();
     auto restPoseName = string(rootBone->GetName()).append(" RestPose");
     auto restPose = FbxPose::Create(m_fbxScene, restPoseName.c_str());
     restPose->SetIsBindPose(false);
