@@ -55,3 +55,8 @@ external/fbxsdk
 /build
 /build_
 /out/build/x86-Debug
+/examples/converter/ALL_BUILD.vcxproj
+/examples/converter/ALL_BUILD.vcxproj.filters
+/examples/converter/ConverterExample.sln
+/examples/converter/ConverterExample.vcxproj
+/examples/converter/ConverterExample.vcxproj.filters
