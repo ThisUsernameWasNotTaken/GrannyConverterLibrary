@@ -78,47 +78,50 @@ namespace GCL::Exporter {
 		vector<GCL::Bindings::Model::SharedPtr> modelList = m_scene->getModels();
 		for (size_t i = 0; i < modelList.size(); i++)
 		{
-			auto model = modelList.at(i);
-			auto modelBones = model->getBones();
-			for (size_t ii = 0; ii < modelBones.size(); ii++)
-			{
-				fbxsdk::FbxNode * modelBoneNode = modelBones.at(ii)->getNode();
-				if (modelBoneNode != nullptr)
-				{
-					modelListThatHaveNodes.push_back(model);
-					modelListIndexFoundBone.push_back(ii);
-				}
-			}
+			auto modelCurrent = modelList.at(i);
+			auto modelCurrentBones = modelCurrent->getBones();
 			try
 			{
 				// Export skeleton if enabled.
-				if (m_options.exportSkeleton && model->getBones().size() > 0) {
-					auto exist = m_fbxScene->GetRootNode()->FindChild(model->getBones()[0]->getData().Name);
-
-					if (!exist) {
-						////////// HERE WERDEN DIE BONES ZU NODES ZUGEORDNET ///////////
-						m_exporterSkeleton->exportBones(model);
+				if (m_options.exportSkeleton && modelCurrentBones.size() > 0) {
+					FbxNode* exist = m_fbxScene->GetRootNode()->FindChild(modelCurrentBones[0]->getData().Name);
+					////////// HIER WERDEN DIE BONES ZU NODES ZUGEORDNET ///////////
+					if (!exist)
+					{
+						/// wenn noch keine childs in der export fbx-scene mit dem namen unseres bone childs zu finden sind, exportieren wir es erstmalig.
+						m_exporterSkeleton->exportBones(modelCurrent);
 					}
 					else
 					{
+						/// ansonsten: wenn doch schon ein gleichnamiges child vorhanden ist, werden alle bones aller anderen models in das aktuelle model überschreiben
 						for (auto otherModel : m_scene->getModels()) {
-							if (otherModel != model && otherModel->getBones()[0]->getNode() == exist) {
-								model->setBones(otherModel->getBones());
+							if (otherModel != modelCurrent && otherModel->getBones()[0]->getNode() == exist) {
+								modelCurrent->setBones(otherModel->getBones());
 							}
 						}
 					}
 				}
 
-				if (model->isExcluded()) {
+				if (modelCurrent->isExcluded()) {
 					continue;
 				}
 
 				if (m_options.exportMeshes) {
-					m_exporterMesh->exportMeshes(model, m_options.exportSkeleton);
+					m_exporterMesh->exportMeshes(modelCurrent, m_options.exportSkeleton);
 				}
 
-				if (m_options.exportSkeleton && model->getBones().size() > 1) {
-					m_exporterSkeleton->exportPoses(model);
+				for (size_t ii = 0; ii < modelCurrentBones.size(); ii++)
+				{
+					fbxsdk::FbxNode* modelBoneNode = modelCurrentBones.at(ii)->getNode();
+					if (modelBoneNode != nullptr)
+					{
+						modelListThatHaveNodes.push_back(modelCurrent);
+						modelListIndexFoundBone.push_back(ii);
+					}
+				}
+
+				if (m_options.exportSkeleton && modelCurrentBones.size() > 1) {
+					m_exporterSkeleton->exportPoses(modelCurrent);
 				}
 			}
 			catch (const std::exception&)
