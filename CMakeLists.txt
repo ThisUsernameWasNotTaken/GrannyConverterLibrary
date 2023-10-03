@@ -16,19 +16,6 @@ file(GLOB_RECURSE GrannyConverterLibrarySources
     "src/*.h"
 )
 
-include(FetchContent)
-FetchContent_Declare(
-    Corrosion
-    GIT_REPOSITORY https://github.com/corrosion-rs/corrosion.git
-    GIT_TAG v0.4 # Optionally specify a commit hash, version tag or branch here
-)
-# Set any global configuration variables such as `Rust_TOOLCHAIN` before this line!
-FetchContent_MakeAvailable(Corrosion)
-# Import targets defined in a package or workspace manifest `Cargo.toml` file
-corrosion_import_crate(MANIFEST_PATH ../RustReadZips/Cargo.toml)
-#corrosion_link_libraries(_cargo-build_ ConverterExample)
-corrosion_link_libraries(sacred-zipyip ConverterExample)
-
 add_library(GrannyConverterLibrary STATIC
   ${GrannyConverterLibrarySources}
 )
