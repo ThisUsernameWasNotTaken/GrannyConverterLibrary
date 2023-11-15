@@ -1,7 +1,6 @@
 //#pragma once
-#include <string>
 #include <vector>
-
+#include <string>
 //int extractFBX(std::string& baseFilepath, std::vector<std::string>& list);
 
 //int mainA();
@@ -11,6 +10,7 @@
 #define MAIN_H
 
 extern "C" int add_numbers(int a, int b);
+extern "C" int test(std::string a);
 //extern "C" int extractFbx(string baseFilepath, vector<string> list);
 
 #endif

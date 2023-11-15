@@ -6,7 +6,7 @@
 //#include "gcl/utilities/logging.h"
 //
 //#include <stdio.h>  /* defines FILENAME_MAX */
-//#include <string>
+#include <string>
 //#include <iostream>
 //#include <filesystem>
 //#include <direct.h>
@@ -34,6 +34,9 @@ note that the converter will overwrite the bones of the current model with ALL g
 
 int add_numbers(int a, int b) {
     return a + b;
+}
+int test(std::string a) {
+    return 42;
 }
 
 int mainA()
