@@ -39,6 +39,10 @@ const char * test(const char * ppp) {
     return "testo";
 }
 
+const char * testArr(const char * ppp[]) {
+    return "testo ARR";
+}
+
 int mainA()
 {
 //	char cCurrentPath[FILENAME_MAX];
