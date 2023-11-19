@@ -1,6 +1,7 @@
 //#pragma once
 //#include <vector>
 #include <string>
+#include <iostream>
 //int extractFBX(std::string& baseFilepath, std::vector<std::string>& list);
 
 //int mainA();

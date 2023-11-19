@@ -23,7 +23,7 @@ note that the converter will overwrite the bones of the current model with ALL g
 //	return x;
 //}
 #include <string>
-// #include <iostream>
+#include <iostream>
 #include "main.h"
 //
 //int main() {
@@ -36,6 +36,7 @@ int add_numbers(int a, int b) {
     return a + b;
 }
 int test(const char * ppp) {
+    std::cout << ppp;
     return 42;
 }
 
