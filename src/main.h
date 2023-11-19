@@ -11,7 +11,7 @@
 #define MAIN_H
 
 extern "C" int add_numbers(int a, int b);
-extern "C" int test(const char * ppp);
+extern "C" const char * test(const char * ppp);
 //extern "C" int extractFbx(string baseFilepath, vector<string> list);
 
 #endif

@@ -35,9 +35,9 @@ note that the converter will overwrite the bones of the current model with ALL g
 int add_numbers(int a, int b) {
     return a + b;
 }
-int test(const char * ppp) {
+const char * test(const char * ppp) {
     std::cout << ppp;
-    return 42;
+    return ppp;
 }
 
 int mainA()
