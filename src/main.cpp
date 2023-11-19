@@ -6,7 +6,6 @@
 //#include "gcl/utilities/logging.h"
 //
 //#include <stdio.h>  /* defines FILENAME_MAX */
-#include <string>
 //#include <iostream>
 //#include <filesystem>
 //#include <direct.h>
@@ -23,7 +22,8 @@ note that the converter will overwrite the bones of the current model with ALL g
 //	bool x = str.size() >= suffix.size() && str.compare(str.size() - suffix.size(), suffix.size(), suffix) == 0;
 //	return x;
 //}
-#include <stdio.h>
+#include <string>
+// #include <iostream>
 #include "main.h"
 //
 //int main() {
@@ -35,7 +35,7 @@ note that the converter will overwrite the bones of the current model with ALL g
 int add_numbers(int a, int b) {
     return a + b;
 }
-int test(std::string a) {
+int test(const char * ppp) {
     return 42;
 }
 
