@@ -36,8 +36,7 @@ int add_numbers(int a, int b) {
     return a + b;
 }
 const char * test(const char * ppp) {
-    std::cout << ppp;
-    return ppp;
+    return "testo";
 }
 
 int mainA()
