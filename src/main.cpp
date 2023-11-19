@@ -1,9 +1,9 @@
-//#include "gcl/exporter/fbxexporter.h"
-//#include "gcl/exporter/fbxexportoptions.h"
-//#include "gcl/grannyconverterlibrary.h"
-//#include "gcl/importer/grannyimporter.h"
-//#include "gcl/importer/grannyimportoptions.h"
-//#include "gcl/utilities/logging.h"
+#include "gcl/exporter/fbxexporter.h"
+#include "gcl/exporter/fbxexportoptions.h"
+#include "gcl/grannyconverterlibrary.h"
+#include "gcl/importer/grannyimporter.h"
+#include "gcl/importer/grannyimportoptions.h"
+#include "gcl/utilities/logging.h"
 //
 //#include <stdio.h>  /* defines FILENAME_MAX */
 //#include <iostream>
@@ -43,6 +43,10 @@ const char * testArr(const char * ppp[]) {
     return "testo ARR";
 }
 
+int extractFbx(const char * baseFilepath, const char * list[]) {
+    return 0;
+}
+
 int mainA()
 {
 //	char cCurrentPath[FILENAME_MAX];
@@ -73,9 +77,8 @@ int mainA()
 	return 55;
 }
 
-//
-//int extractFBX(std::string& baseFilepath, std::vector<std::string>& list)
-//{
+
+//int extractFBX(const char * baseFilepath, const char * list[]) {
 //	// Initialize library.
 //	GCL::GrannyConverterLibrary grannyConverterLibrary;
 //
