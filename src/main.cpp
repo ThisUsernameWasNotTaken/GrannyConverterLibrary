@@ -4,12 +4,13 @@
 #include "gcl/importer/grannyimporter.h"
 #include "gcl/importer/grannyimportoptions.h"
 #include "gcl/utilities/logging.h"
-//
-//#include <stdio.h>  /* defines FILENAME_MAX */
-//#include <iostream>
-//#include <filesystem>
-//#include <direct.h>
-//#include "main.h"
+
+#include <stdio.h>  /* defines FILENAME_MAX */
+#include <string>
+#include <iostream>
+#include <filesystem>
+#include <direct.h>
+#include "main.h"
 
 //#define GetCurrentDir _getcwd
 
