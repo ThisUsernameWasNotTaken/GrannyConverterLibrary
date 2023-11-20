@@ -60,3 +60,8 @@ external/fbxsdk
 /examples/converter/ConverterExample.sln
 /examples/converter/ConverterExample.vcxproj
 /examples/converter/ConverterExample.vcxproj.filters
+
+
+# Added by cargo
+
+/target
