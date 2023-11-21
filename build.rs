@@ -40,17 +40,17 @@ fn main() {
 
     let mut build = cc::Build::new();
     let source_folder = ".";// use a relative path  // "E:\\root\\Dateien\\Sacred\\GrannyConverterLibrary";
-    for line in source_files.lines() {
-        build.file(source_folder.to_owned() + line);
-    }
+    // for line in source_files.lines() {
+    //     build.file(source_folder.to_owned() + line);
+    // }
     build
         // .file(source_folder.to_owned() + "/src/main.h")
         .file(source_folder.to_owned() + "/src/main.cpp")
-        .include("C:/Program Files/Autodesk/FBX/FBX SDK/2020.3.1/include")
-        .include(source_folder.to_owned() + "/external/devilsdk/include")
+        // .include("C:/Program Files/Autodesk/FBX/FBX SDK/2020.3.1/include")
+        // .include(source_folder.to_owned() + "/external/devilsdk/include")
         // .include(source_folder.to_owned() + "/out/build/x86-Debug")
-        .include(source_folder)
-        .include(source_folder.to_owned() + "/src")
+        // .include(source_folder)
+        // .include(source_folder.to_owned() + "/src")
         // .include(source_folder.to_owned() + "/bindings")
         // .include(source_folder.to_owned() + "/exporter")
         // .include(source_folder.to_owned() + "/importer")
@@ -62,7 +62,7 @@ fn main() {
 
         // +verbatim means that rustc itself won't add any target-specified library prefixes or suffixes (like lib or .a) to the library name,
         // and will try its best to ask for the same thing from the linker.
-        .link_lib_modifier("+verbatim")
+        // .link_lib_modifier("+verbatim")
         .compile("granny2converter");
 
     println!("cargo:rerun-if-changed={}/src/main.cpp", source_folder.to_owned());

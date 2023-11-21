@@ -1,9 +1,9 @@
-#include "gcl/exporter/fbxexporter.h"
-#include "gcl/exporter/fbxexportoptions.h"
-#include "gcl/grannyconverterlibrary.h"
-#include "gcl/importer/grannyimporter.h"
-#include "gcl/importer/grannyimportoptions.h"
-#include "gcl/utilities/logging.h"
+//#include "gcl/exporter/fbxexporter.h"
+//#include "gcl/exporter/fbxexportoptions.h"
+//#include "gcl/grannyconverterlibrary.h"
+//#include "gcl/importer/grannyimporter.h"
+//#include "gcl/importer/grannyimportoptions.h"
+//#include "gcl/utilities/logging.h"
 
 #include <stdio.h>  /* defines FILENAME_MAX */
 #include <string>
@@ -43,10 +43,10 @@ const char * test(const char * ppp) {
 const char * testArr(const char * ppp[]) {
     return "testo ARR";
 }
-
-int extractFbx(const char * baseFilepath, const char * list[]) {
-    return 0;
-}
+//
+//int extractFbx(const char * baseFilepath, const char * list[]) {
+//    return 0;
+//}
 
 int mainA()
 {
