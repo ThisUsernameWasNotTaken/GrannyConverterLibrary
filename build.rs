@@ -44,7 +44,7 @@ fn main() {
         build.file(source_folder.to_owned() + line);
     }
     build
-        // .file(source_folder.to_owned() + "/src/main.h")
+        .file(source_folder.to_owned() + "/src/main.h")
         .file(source_folder.to_owned() + "/src/main.cpp")
         .include("C:/Program Files/Autodesk/FBX/FBX SDK/2020.3.1/include")
         .include(source_folder.to_owned() + "/external/devilsdk/include")

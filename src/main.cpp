@@ -43,10 +43,10 @@ const char * test(const char * ppp) {
 const char * testArr(const char * ppp[]) {
     return "testo ARR";
 }
-//
-//int extractFbx(const char * baseFilepath, const char * list[]) {
-//    return 0;
-//}
+
+int extractFbx(const char * baseFilepath, const char * list[]) {
+    return 0;
+}
 
 int mainA()
 {
