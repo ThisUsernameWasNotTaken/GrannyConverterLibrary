@@ -12,15 +12,17 @@ pub fn extractFbxWithGrannyConverter(baseFilepath: String, list: Vec<String>) {
         //     let result = result.to_str().unwrap();
         //     println!("{}", result);
         //
-        // let inputArr = [
-        //     ptr_from("test").unwrap().as_ptr(),
-        //     CString::new("string").unwrap().as_ptr(),
-        //     //         CString::new("test string").unwrap().as_ptr(),
-        //     //         CString::new("testo").unwrap().as_ptr(),
-        // ];
+        let inputArr = [
+            CString::new("test").unwrap().as_ptr(),
+            CString::new("string").unwrap().as_ptr(),
+            //         CString::new("test string").unwrap().as_ptr(),
+            //         CString::new("testo").unwrap().as_ptr(),
+        ];
         // let baseFilepath = CString::new(baseFilepath.as_str()).unwrap().as_ptr();
         // extractFbx(baseFilepath, &inputArr);
-        let inputArr = list.iter().map(|x| CString::new(x)).as_slice();
+        // let inputArr = list.iter().map(|x| CString::new(x.clone()).unwrap().as_ptr());
+        // let inputArr: [*const c_char] = inputArr.collect();
+        // let inputArr: [*const c_char] = inputArr.collect().as_slice();
         // .as_slice().iter().map(|| CString::new);
         let baseFilepath = CString::new(baseFilepath.as_str()).unwrap().as_ptr();
         extractFbx(baseFilepath, &inputArr);
