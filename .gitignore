@@ -48,9 +48,7 @@ _deps
 *.app
 
 # Project specific
-external/devilsdk
-external/granny2
-external/fbxsdk
+/external
 /.vs
 /build
 /build_
@@ -65,3 +63,4 @@ external/fbxsdk
 # Added by cargo
 
 /target
+/*.lock

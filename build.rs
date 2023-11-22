@@ -66,6 +66,7 @@ fn main() {
         .compile("granny2converter");
 
     println!("cargo:rerun-if-changed={}/src/main.cpp", source_folder.to_owned());
-    // println!("cargo:rustc-link-search=lib");
-    // println!("cargo:rustc-link-lib=/lib/libfbxsdk.dll");
+    // println!("cargo:rustc-link-search={}", "C:/Program Files/Autodesk/FBX/FBX SDK/2020.3.1/lib/vs2019/x86");
+    println!("cargo:rustc-link-search=dylib={}", "C:\\Program Files\\Autodesk\\FBX\\FBX SDK\\2020.3.1\\lib\\vs2019\\x86\\debug\\libfbxsdk.dll");
+    // println!("cargo:rustc-link-lib={}", "C:/Program Files/Autodesk/FBX/FBX SDK/2020.3.1/lib/vs2019/x86/debug/libfbxsdk.lib");
 }
