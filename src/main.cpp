@@ -44,10 +44,6 @@ const char * testArr(const char * ppp[]) {
     return "testo ARR";
 }
 
-int extractFbx(const char * baseFilepath, const char * list[]) {
-    return 0;
-}
-
 int mainA()
 {
 //	char cCurrentPath[FILENAME_MAX];
@@ -73,13 +69,15 @@ int mainA()
 //	}
 //	//list.push_back("E:\\root\\Dateien\\Sacred\\RustReadZips\\sacred extract test\\graphics05.zipa_helve_walk_thr2.GR2");
 //
-//	extractFBX(baseFilepath, list);
+//	 extractFbx(baseFilepath, list);
 
 	return 55;
 }
 
-
-//int extractFBX(const char * baseFilepath, const char * list[]) {
+//int extractFbx(const char * baseFilepath, const char * list[]) {
+//    return 0;
+//}
+int extractFbx(const char * baseFilepath, const char * list[]) {
 //	// Initialize library.
 //	GCL::GrannyConverterLibrary grannyConverterLibrary;
 //
@@ -122,5 +120,5 @@ int mainA()
 //	// Export the fbx scene to a fbx file.
 //	exporter.exportToFile(baseFilepath + ".fbx");
 //
-//	return 0;
-//}
+	return 0;
+}
