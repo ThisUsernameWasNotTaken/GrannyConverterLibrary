@@ -1,8 +1,8 @@
 use std::fs;
 use cmake;
 fn main() {
-    cmake::Config::
-    let dst = cmake::build(".");
+    // cmake::Config::
+    let dst = cmake::build("out");
 
     // let mut build = cc::Build::new();
     // add_directory(&mut build, "src");
